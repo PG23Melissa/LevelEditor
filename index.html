@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="./scripts/jquery-3.6.1.min.js"></script>
+
+    <script type="module" src="./scripts/main.js" defer></script>
+
+
+    <title>Editor</title>
+</head>
+<body>
+    <h1>GAME EDITOR</h1>
+    <main id="editor-wrapper" class="flex-container">
+
+    <div id="editor-area" class=" background" ></div>
+
+    <section id="game-object-list" class="flex-item info-form-area">
+        <ul>
+            <li><img id="box-1" class="box strong-box" draggable="true" src="./img/strong_box.png"/></li>
+            <li><img id="box-2" class="box wood-box" draggable="true" src="./img/wood_box.png"/></li>
+            <li><img id="box-3" class="box brick-box" draggable="true" src="./img/brick_box.png"/></li>
+            <li><img id="box-4" class="box doodle-man" draggable="true" src="./img/doodle_man.png"/></li>
+            <li><img id="box-6" class="box cannon" draggable="true" src="./img/cannon.png"/></li>
+            <li><img id="box-5" class="box happy-face" draggable="true" src="./img/happy_face.png"/></li>
+
+            
+        </ul>
+    </section>
+    <section id="level-info-area" class="flex-item info-form-area">
+
+        <form id="level-info" class="submission-form" accept-charset="utf-8">
+            <label>Name:</label>
+            <select id="level-list" name="level-name">
+                <option value="lvl1">Level 1</option>
+                <option value="lvl2">Level 2</option>
+                <option value="lvl3">Level 3</option>
+                <option value="lvl4">Level 4</option>
+            </select><br />
+
+            Max shots:
+            <input type="text" name="shots" value="15" /><br />
+            One Star Score:
+            <input type="text" name="score-star1" value="1000" /><br />
+            Two Star Score:
+            <input type="text" name="score-star2" value="10000" /><br />
+            Three Star Score:
+            <input type="text" name="score-star3" value="50000" /><br />
+
+                    <div id="save-level">
+                        <div class="button-flat">Save Level</div>
+                    </div>
+            <input type="submit" name="action" value="Submit Level" />
+        </form>
+    </section>
+    </main>
+
+
+
+    <footer>Copyright(c) Melissa Osorio</footer>
+
+</body>
+</html>

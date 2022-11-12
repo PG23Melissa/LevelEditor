@@ -1,0 +1,19 @@
+{
+  "name": "gameeditor",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Game Editor",
+  "main": "server.js",
+  "scripts": {
+    "server": "node --inspect ./server.js",
+    "debug": "nodemon --inspect ./server.js"
+  },
+  "author": "Melissa Osorio",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
+
