@@ -1,5 +1,7 @@
 // Copyright (C) 2022, Melissa Osorio
 
+import Scene from './Scene.js'
+
 export default class App {
 
     #__private__;
@@ -13,32 +15,28 @@ export default class App {
         my.output$ = $("#output");
 
         // connect a handler for the submit event on the form
-        $("#level-info").on("submit", event => this.onSubmit( event ));
+        //$("#level-info").on("submit", event => this.onSubmit( event ));
         $("#save-btn").on("click", event => this.onSave( event ));
         this.initDraggables();
         this.initDropzone();
-
-        this.x;
-        this.y;
-
     }
 
 
     initDraggables() {
-        $(".box").on("dragstart", (event,clone) => {
+        $(".box").on("dragstart", (event) => {
+
             // attach my id here to the element & transfer it
             const data = {
                 targetId: event.target.id,
             };
-            this.x=event.offsetX;
-            this.y=event.offsetY;
-
 
             const xferData = JSON.stringify( data );
+            console.log(xferData);
+
             event.originalEvent.dataTransfer.setData("text", xferData );
+            
             event.originalEvent.dataTransfer.effectAllowed = "move";
         });
-        
     }
 
 
@@ -55,27 +53,44 @@ export default class App {
 
                 const xferData = event.originalEvent.dataTransfer.getData("text");
                 const data = JSON.parse( xferData );
+
                 let gameObjectSrc = $(`#${data.targetId}`);
 
-                let classList = `isPlaced ${gameObjectSrc.classList}`;  
+                if(!gameObjectSrc.hasClass("placed")){
+                    gameObjectSrc=$(`#${data.targetId}`).clone(true);
+                };
                 
-                console.log(gameObjectSrc);
-                let newEl = $(`<div class=${classList} draggable="true"></div>`);
-                newEl = $(`#${data.targetId}`);
-                newEl.css("top",event.originalEvent.offsetY);
-                newEl.css("left",event.originalEvent.offsetX);
+                let newEl = gameObjectSrc;
+                newEl.css("top",event.originalEvent.offsetY+100);
+                newEl.attr('offsetY', event.originalEvent.offsetY+100);
+                newEl.css("left",event.originalEvent.offsetX+100);
+                newEl.attr('offsetX', event.originalEvent.offsetX+100);
                 newEl.addClass("placed");
                 $("#editor-area").append( newEl );
             });
+    }
+
+    initMovable() {
+        $(".box").on("dragstart", (event,clone) => {
+            // attach my id here to the element & transfer it
+            const data = {
+                targetId: event.target.id,
+            };
+
+            const xferData = JSON.stringify( data );
+            event.originalEvent.dataTransfer.setData("text", xferData );
+            event.originalEvent.dataTransfer.effectAllowed = "move";
+        });
+        
     }
 
 
     onSave( event ) {
         //event.preventDefault();
         // create new Scene( this.editor$ )
-        const aScene = new Scene( this.editor$ );
+        const aScene = new Scene( this.editor$ );//poner todos los elementos dentro de la clase
         // Serialize the scene
-        const payload = aScene.serialize();
+        const payload = aScene.serialize();///convertir en json legible
         // post the scene to the server
         const options = {
             userid: "Melissa", // eg pg15student
@@ -90,10 +105,9 @@ export default class App {
                 // handle the response
                 const respData = JSON.parse( response );
                 if (!respData.error)
-                    console.log(`SUCCESS: Received ${respData.bytes} from the server`)
+                    console.log(`SUCCESS: Received ${respData.status} from the server`)
             })
     }
-
 
     onSubmit( event ) {
         event.preventDefault();

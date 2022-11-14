@@ -38,16 +38,16 @@ class Server {
             const body = request.body;
             const query = request.query;
 
-            const data = {
-                name: query.name,
-                shots: query.shots,
-                onesStar:query.score1,
+            // const data = {
+            //     name: query.name,
+            //     shots: query.shots,
+            //     onesStar:query.score1,
+            // }
 
-            }
+            response.send( JSON.stringify( {status: "saved"} ));
 
-            console.log("Recieved some data");
-            response.send( JSON.stringify( data ));
-            console.log(JSON.stringify( data ));
+            //response.send( JSON.stringify( data ));
+            // console.log(JSON.stringify( data ));
         })
 
         this.api.set("port", PORT );
