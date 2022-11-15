@@ -1,0 +1,53 @@
+# *** PG<xx> T<y> Course Name  - Assignment Name ***
+---------------------------------------
+<Melissa Osorio>
+<11/14/22>
+
+<Level Editor is a client server application that allows the editing of levels for the game "angry pigs".>
+
+[demo] (https://github.com/PG23Melissa/LevelEditor) | [tutorial] (link)
+
+
+## Synopsis
+---------------
+(This is a level editor tha helps ou to design a save a level in order to play it )
+
+
+
+
+# Download/Install
+---------------------------------------
+(Provide code examples and explanations of how to get the project.)
+
+Browse to demo link
+
+[Download Zip](link to zip) | \\VFS_Depot\Programming\PGxx\pgXXusername\apps\myapp
+
+URL or Full path in Perforce or BitBucket
+
+https://github.com/PG23Melissa/LevelEditor
+
+
+
+# *** How to use ***
+---------------------------------------
+<Instructions on how to use the app - edit and replace this line>
+
+clone the repo from git hub
+init npm with mit licence
+instal node.js
+on vs code terminal Install express, http, path, fs-extra and corse
+Run the server with nodemon debug command
+
+
+## Tests (optional)
+---------------
+nodemon debug
+
+
+
+# *** Caveats *** (optional)
+---------------------------------------
+
+the object doesn't drag to the specific place
+The scene is created but still needs to be saved in the local storage
