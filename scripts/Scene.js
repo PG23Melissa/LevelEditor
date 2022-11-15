@@ -2,15 +2,10 @@ export default class App {
 
 constructor(){
 
-    this.createScene();
-
     this.sceneObjects=$(".placed")
     
 }
 
-createScene(){
-    console.log("sirvo")
-}
 
 serialize(){
     console.log("serialized");

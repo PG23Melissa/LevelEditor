@@ -11,9 +11,10 @@
   "author": "Melissa Osorio",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
+    "fs-extra": "^10.1.0",
     "http": "^0.0.1-security",
     "path": "^0.12.7"
   }
 }
-

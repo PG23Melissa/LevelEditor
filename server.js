@@ -4,6 +4,9 @@ import Express from "express";
 import Path from "path"
 import HTTP from "http"
 
+
+
+
 import { fileURLToPath } from 'url';
 
 const PORT = 3000;
@@ -19,11 +22,13 @@ class Server {
         this.#__dirname = Path.dirname( this.#__filename );
 
         this.api = Express();
+
         this.api
             .use( Express.json())
             .use( Express.urlencoded({ extended: false }))
             .use( Express.static( Path.join( this.#__dirname, './')))
-            .use( Express.static( Path.join( this.#__dirname, './server/api')));
+            .use( Express.static( Path.join( this.#__dirname, './server/api')))
+
 
         this.api.get("/", ( request, response ) => {
             // handle basic requests

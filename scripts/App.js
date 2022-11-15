@@ -61,10 +61,11 @@ export default class App {
                 };
                 
                 let newEl = gameObjectSrc;
-                newEl.css("top",event.originalEvent.offsetY+100);
-                newEl.attr('offsetY', event.originalEvent.offsetY+100);
-                newEl.css("left",event.originalEvent.offsetX+100);
-                newEl.attr('offsetX', event.originalEvent.offsetX+100);
+
+                newEl.css("top",event.originalEvent.offsetY);
+                newEl.attr('offsetY', event.originalEvent.offsetY);
+                newEl.css("left",event.originalEvent.offsetX);
+                newEl.attr('offsetX', event.originalEvent.offsetX);
                 newEl.addClass("placed");
                 $("#editor-area").append( newEl );
             });
@@ -76,7 +77,6 @@ export default class App {
             const data = {
                 targetId: event.target.id,
             };
-
             const xferData = JSON.stringify( data );
             event.originalEvent.dataTransfer.setData("text", xferData );
             event.originalEvent.dataTransfer.effectAllowed = "move";
@@ -86,11 +86,11 @@ export default class App {
 
 
     onSave( event ) {
-        //event.preventDefault();
+        event.preventDefault();
         // create new Scene( this.editor$ )
-        const aScene = new Scene( this.editor$ );//poner todos los elementos dentro de la clase
+        const aScene = new Scene( this.editor$ );
         // Serialize the scene
-        const payload = aScene.serialize();///convertir en json legible
+        const payload = aScene.serialize();///convert in json
         // post the scene to the server
         const options = {
             userid: "Melissa", // eg pg15student
@@ -99,7 +99,7 @@ export default class App {
             payload: payload   // actual data in JSON format
         };
 
-        console.log(options.payload);
+        console.log(options);
         $.post(`/api/save`, options )
             .then( response => {
                 // handle the response
@@ -107,6 +107,15 @@ export default class App {
                 if (!respData.error)
                     console.log(`SUCCESS: Received ${respData.status} from the server`)
             })
+
+            //let level = new LevelController( this.editor$ );
+            // level.save()
+            // .then( response => {
+            //     alert(`Level saved`);
+            // })
+            // .catch( response => {
+            //     alert('Level not saved')
+            // })
     }
 
     onSubmit( event ) {
@@ -123,7 +132,7 @@ export default class App {
                 // called when the server returns
                 let responseData = JSON.parse( result );
                 my.output$.html('made it here');
-
+                
                 my.output$.append( result );
             })
     }
